@@ -1,1 +1,9 @@
-{}
+{
+    "projectId": "xxxxxxxxxxx",
+    "appId": "xxxxxxxxxxxxxxx",
+    "storageBucket": "xxxxxxxxxxxxxxxxxxx",
+    "apiKey": "xxxxxxxxxxxx",
+    "authDomain": "xxxxxxxxxx",
+    "messagingSenderId": "xxxxxxxxxxxxxx",
+    "measurementId": "xxxxxxxxxx"
+}
