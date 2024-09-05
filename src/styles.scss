@@ -1,2 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'ngx-toastr/toastr';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+textarea {
+    resize: none !important;
+}
+
+label {
+    margin-bottom: 10px;
+}

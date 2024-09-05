@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">Gérer une tâche </h1>
+</div>
+<form (submit)="submit()" [formGroup]="taskForm" action="">
+    <div class="modal-body">
+        <div class="row mb-4">
+            <div class="-6mb-3 col">
+                <label for="title">Titre:</label>
+                <input class="form-control" formControlName="title" id="title"/>
+            </div>
+
+            <div class="mb-3 col-6">
+                <label for="dueDate">Date Limite :</label>
+                <input class="form-control" formControlName="dueDate" id="dueDate" type="date"/>
+            </div>
+            <div class="mb-3 col-12">
+                <label for="description">Description:</label>
+                <textarea class="form-control" formControlName="description" id="description"
+                          rows="5"></textarea>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="priority">Priorité:</label>
+                <select class="form-select" formControlName="priority" id="priority">
+                    <option value="low">Faible</option>
+                    <option value="medium">Moyenne</option>
+                    <option value="high">Forte</option>
+                </select>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="completed">Statut:</label>
+                <select class="form-select" formControlName="completed" id="completed">
+                    <option value="open">Ouverte</option>
+                    <option value="closed">Terminée</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        @if (edit) {
+            @if (isSubmit) {
+                <button class="btn btn-success" disabled>Chragement...</button>
+            } @else {
+                <button (click)="close()" class="btn btn-danger" type="button">Fermer</button>
+                <button class="btn btn-success" type="submit">Mettre à jour</button>
+            }
+        } @else {
+            @if (isSubmit) {
+                <button class="btn btn-primary" disabled>Chargement...</button>
+            } @else {
+                <button (click)="close()" class="btn btn-danger" type="button">Fermer</button>
+                <button class="btn btn-primary" type="submit">Sauvegarder</button>
+            }
+        }
+    </div>
+</form>
+
+

@@ -1,0 +1,45 @@
+<div class="card mb-1">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+                {{ task.title }}
+            </div>
+            <div class="col-3">
+                Collarborateur
+            </div>
+            <div class="col-2">
+                {{ task.dueDate }}
+            </div>
+            <div class="col-1">
+                @if (task.completed === 'open') {
+                    <span class="badge rounded-pill text-bg-success">Ouverte</span>
+                } @else {
+                    <span class="badge rounded-pill text-bg-danger">Termimée</span>
+                }
+            </div>
+            <div class="col-1">
+                @if (task.priority === 'low') {
+                    <span class="badge text bg-success">Faible</span>
+                } @else if (task.priority === 'medium') {
+                    <span class="badge text bg-warning">Moyenne</span>
+                } @else {
+                    <span class="badge text bg-danger">Forte</span>
+                }
+            </div>
+            <div class="col-2  text-end">
+                <div class="btn-group">
+                    <a (click)="editTask(task)" class="btn btn-outline-primary btn-sm" data-bs-target="#editTask"
+                       data-bs-toggle="modal">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a (click)="editTask(task)" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-person-add"></i>
+                    </a>
+                    <a (click)="deleteTask(task)" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
