@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Task Manager</a>
+        <button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarCollapse" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a [ngClass]="{ 'active': isLinkActive(['/dashboard']) }" class="nav-link" routerLink="/dashboard">
+                        Tableau de Bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a [ngClass]="{ 'active': isLinkActive(['/tasks']) }" class="nav-link" routerLink="/tasks">
+                        Tâches
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a (click)="logout()" class="nav-link">
+                        Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

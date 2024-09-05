@@ -6,24 +6,19 @@ import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {getAuth, provideAuth} from '@angular/fire/auth';
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {getMessaging, provideMessaging} from '@angular/fire/messaging';
+import {firebaseConfig} from "./core/environment/environment";
+import {provideToastr} from "ngx-toastr";
+import {provideAnimations} from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideZoneChangeDetection({eventCoalescing: true}),
         provideRouter(routes),
-        provideFirebaseApp(() => initializeApp(
-            {
-                "projectId": "xxxxxxxxxxx",
-                "appId": "xxxxxxxxxxxxxxx",
-                "storageBucket": "xxxxxxxxxxxxxxxxxxx",
-                "apiKey": "xxxxxxxxxxxx",
-                "authDomain": "xxxxxxxxxx",
-                "messagingSenderId": "xxxxxxxxxxxxxx",
-                "measurementId": "xxxxxxxxxx"
-            }
-        )),
+        provideFirebaseApp(() => initializeApp(firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
-        provideMessaging(() => getMessaging())
+        provideMessaging(() => getMessaging()),
+        provideAnimations(),
+        provideToastr()
     ]
 };

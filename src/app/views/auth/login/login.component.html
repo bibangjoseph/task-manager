@@ -20,22 +20,28 @@
     </svg>
 
     <main class="form-signin w-100 m-auto">
-        <form>
-            <img alt="" class="mb-4" height="57" src="assets/img/task-manager.png">
+        <form (submit)="submit()" [formGroup]="loginForm">
             <h1 class="h3 mb-3 fw-normal">Connectez-vous !</h1>
 
             <div class="form-floating">
-                <input class="form-control" id="floatingInput" placeholder="name@example.com" type="email">
+                <input class="form-control" formControlName="email" id="floatingInput" placeholder="name@example.com"
+                       type="email">
                 <label for="floatingInput">Adresse mail</label>
             </div>
             <div class="form-floating">
-                <input class="form-control" id="floatingPassword" placeholder="Password" type="password">
+                <input class="form-control" formControlName="password" id="floatingPassword" placeholder="Password"
+                       type="password">
                 <label for="floatingPassword">Mot de passe</label>
             </div>
             <div class="text-start my-3">
                 <a routerLink="/register">Créer un compte</a>
             </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">Connexion</button>
+
+            @if (isSubmit) {
+                <button class="btn btn-primary w-100 py-2" disabled>Chargement...</button>
+            } @else {
+                <button class="btn btn-primary w-100 py-2" type="submit">Connexion</button>
+            }
             <p class="mt-5 mb-3 text-body-secondary">&copy; BIBANG - 2024</p>
         </form>
     </main>
