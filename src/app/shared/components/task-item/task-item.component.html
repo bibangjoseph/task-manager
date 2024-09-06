@@ -5,16 +5,16 @@
                 {{ task.title }}
             </div>
             <div class="col-3">
-                Collarborateur
+                <span class="text-primary"> {{ task.collaborators.length }} </span> <span class="text-sm"> collaborateurs</span>
             </div>
             <div class="col-2">
                 {{ task.dueDate }}
             </div>
             <div class="col-1">
                 @if (task.completed === 'open') {
-                    <span class="badge rounded-pill text-bg-success">Ouverte</span>
+                    <span class="badge rounded-pill text-bg-warning">Ouverte</span>
                 } @else {
-                    <span class="badge rounded-pill text-bg-danger">Termimée</span>
+                    <span class="badge rounded-pill text-bg-success">Termimée</span>
                 }
             </div>
             <div class="col-1">
@@ -32,7 +32,7 @@
                        data-bs-toggle="modal">
                         <i class="bi bi-pencil"></i>
                     </a>
-                    <a (click)="editTask(task)" class="btn btn-outline-primary btn-sm">
+                    <a (click)="addCollaborators(task)" class="btn btn-outline-primary btn-sm">
                         <i class="bi bi-person-add"></i>
                     </a>
                     <a (click)="deleteTask(task)" class="btn btn-danger btn-sm">

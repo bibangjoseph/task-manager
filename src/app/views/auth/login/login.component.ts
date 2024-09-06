@@ -38,6 +38,7 @@ export class LoginComponent {
             this.toast.showSuccess('Bienvenue ' + userData.pseudo + ' !', 'Bon retour!');
             // Redirection ou action après connexion réussie
         }).catch((error) => {
+            this.isSubmit = false;
             console.error('Login failed:', error);
         });
     }

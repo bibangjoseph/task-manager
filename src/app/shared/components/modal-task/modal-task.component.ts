@@ -36,7 +36,7 @@ export class ModalTaskComponent {
             description: [''],
             dueDate: [''],
             priority: ['low'],
-            completed: [false],
+            completed: ['open'],
             collaborators: [[]],
             ownerId: [''], // Assurez-vous que l'UID du créateur est défini correctement
             createdAt: ['']

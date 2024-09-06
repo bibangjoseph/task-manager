@@ -4,6 +4,7 @@ import {ModalTaskComponent} from "../modal-task/modal-task.component";
 import {TaskService} from "../../../core/services/task.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastService} from "../../../core/services/toast.service";
+import {ModalCollaboratorsComponent} from "../modal-collaborators/modal-collaborators.component";
 
 declare var bootstrap: any
 
@@ -41,5 +42,10 @@ export class TaskItemComponent {
                 this.toast.showError('Vous n\'êtes pas autorisé à supprimer cette tâche', 'Erreur');
             }
         })
+    }
+
+    addCollaborators(task: TaskModel) {
+        const modal = this.modal.open(ModalCollaboratorsComponent, {backdrop: 'static', size: 'lg'});
+        modal.componentInstance.task = task;
     }
 }

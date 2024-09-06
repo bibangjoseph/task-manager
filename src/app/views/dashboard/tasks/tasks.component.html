@@ -9,30 +9,20 @@
 
     <hr>
 
-    @if (loadingSignal()) {
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        </div>
-    } @else {
-        @if (tasksSignal().length > 0) {
-            <div class="row">
-                <div class="col-12">
-                    @for (task of tasksSignal(); track task.id) {
-                        <app-task-item [task]="task"></app-task-item>
-                    }
-                </div>
-            </div>
-        } @else {
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h3>Aucunes tâches trouvées</h3>
-                </div>
-            </div>
-        }
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a (click)="changeTab(1)" [ngClass]="{ 'active': selectedTab === 1 }" class="nav-link">Mes tâches </a>
+        </li>
+        <li class="nav-item">
+            <a (click)="changeTab(2)" [ngClass]="{ 'active': selectedTab === 2 }" class="nav-link">Tâches Partagées</a>
+        </li>
+    </ul>
+    <br>
+    @if (selectedTab === 1) {
+        <app-my-tasks></app-my-tasks>
+    }
 
+    @if (selectedTab === 2) {
+        <app-share-tasks></app-share-tasks>
     }
 </div>

@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un Collaborateur </h1>
+</div>
+<div class="modal-body">
+    <input (input)="searchUsers()" [(ngModel)]="searchQuery" class="form-control"
+           placeholder="Rechercher des utilisateurs"
+           type="text">
+
+    <div class="form-check">
+        <input [(ngModel)]="editPermission" class="form-check-input" id="canEdit" type="checkbox">
+        <label class="form-check-label" for="canEdit">
+            Peut éditer
+        </label>
+    </div>
+    <div class="form-check">
+        <input [(ngModel)]="deletePermission" class="form-check-input" id="canDelete" type="checkbox">
+        <label class="form-check-label" for="canDelete">
+            Peut supprimer
+        </label>
+    </div>
+    <ul class="list-group mt-3">
+        @for (user of filteredUsers; track user.id) {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ user.pseudo }}
+                <button (click)="addUserToTask(user)" class="btn btn-primary btn-sm">Ajouter</button>
+            </li>
+        }
+    </ul>
+</div>
+<div class="modal-footer">
+    <button (click)="close()" class="btn btn-danger" type="button">Fermer</button>
+    <button class="btn btn-primary" type="submit">Sauvegarder</button>
+
+</div>

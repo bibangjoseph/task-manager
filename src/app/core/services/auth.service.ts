@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {collections} from "../models/collections";
-import {collection, CollectionReference, doc, Firestore, getDoc, setDoc} from '@angular/fire/firestore';
+import {collection, CollectionReference, doc, Firestore, getDoc, getDocs, setDoc} from '@angular/fire/firestore';
 import {Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from '@angular/fire/auth';
 
 @Injectable({
@@ -41,10 +41,8 @@ export class AuthService {
             const userDocRef = doc(this.firestore, `users/${user.uid}`);
             let docSnapshot = await getDoc(userDocRef);
             if (docSnapshot.exists()) {
-                console.log('User data from Firestore:', docSnapshot.data());
                 return {...docSnapshot.data(), uid: user.uid};  // Retourner les données utilisateur
             } else {
-                console.log('No such user in Firestore!');
                 return null;
             }
 
@@ -57,10 +55,16 @@ export class AuthService {
 
     logoutUser(): Promise<void> {
         return this.auth.signOut().then(() => {
-            console.log('User logged out successfully');
         }).catch((error) => {
-            console.error('Error during logout:', error);
+            return Promise.reject(error);
         });
+    }
+
+
+    async getUsers(): Promise<any[]> {
+        const usersRef = collection(this.firestore, 'users');
+        const snapshot = await getDocs(usersRef);
+        return snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
     }
 
 }

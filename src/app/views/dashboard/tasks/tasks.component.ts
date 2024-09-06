@@ -1,11 +1,12 @@
 import {Component, inject} from '@angular/core';
 import {NavbarComponent} from "../../../shared/components/navbar/navbar.component";
 import {RouterLink} from "@angular/router";
-import {TaskService} from "../../../core/services/task.service";
-import {Auth} from "@angular/fire/auth";
 import {TaskItemComponent} from "../../../shared/components/task-item/task-item.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ModalTaskComponent} from "../../../shared/components/modal-task/modal-task.component";
+import {MyTasksComponent} from "../../../shared/components/my-tasks/my-tasks.component";
+import {ShareTasksComponent} from "../../../shared/components/share-tasks/share-tasks.component";
+import {NgClass} from "@angular/common";
 
 @Component({
     selector: 'app-tasks',
@@ -13,35 +14,23 @@ import {ModalTaskComponent} from "../../../shared/components/modal-task/modal-ta
     imports: [
         NavbarComponent,
         RouterLink,
-        TaskItemComponent
+        TaskItemComponent,
+        MyTasksComponent,
+        ShareTasksComponent,
+        NgClass
     ],
     templateUrl: './tasks.component.html',
     styleUrl: './tasks.component.scss'
 })
 export class TasksComponent {
-    taskService = inject(TaskService);
-    auth = inject(Auth);
     modal = inject(NgbModal)
-
-    isLoad = true;
-
-
-    // Signal qui suit les tâches
-    tasksSignal = this.taskService.tasksSignal;
-    loadingSignal = this.taskService.loadingSignal;
-
-
-    ngOnInit() {
-        this.auth.onAuthStateChanged((user) => {
-            if (user) {
-                this.taskService.getTasksByUser(user.uid);
-                this.isLoad = true;
-            }
-        });
-    }
-
+    selectedTab = 1;
 
     addTask() {
         this.modal.open(ModalTaskComponent, {size: 'lg'});
+    }
+
+    changeTab(tab: number) {
+        this.selectedTab = tab;
     }
 }
