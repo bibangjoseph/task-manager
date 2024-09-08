@@ -17,10 +17,7 @@ export class DashboardComponent {
     mediumPriorityTasks = computed(() => this.taskService.mediumPriorityTasks());
     highPriorityTasks = computed(() => this.taskService.highPriorityTasks());
 
-
     constructor() {
         this.taskService.getTasksByPrioritySignal();
-
-
     }
 }

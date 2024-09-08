@@ -24,6 +24,8 @@ export class TaskService {
 
     // Création d'un signal pour stocker les tâches
     tasksSignal = signal<TaskModel[]>([]);
+    countTaskSingal = signal<number>(0);
+    countSharedTaskSignal = signal<number>(0);
     sharedTasksSignal = signal<TaskModel[]>([]);
     loadingSignal = signal<boolean>(false);
     loadingSharedSignal = signal<boolean>(false);
@@ -82,6 +84,7 @@ export class TaskService {
             });
             // Mise à jour du signal avec les nouvelles tâches
             this.tasksSignal.set(tasks);
+            this.countTaskSingal.set(tasks.length);
             this.loadingSignal.set(false);
         }, (error) => {
             console.error('Error fetching tasks:', error);
@@ -239,6 +242,7 @@ export class TaskService {
                     }
                 });
                 this.sharedTasksSignal.set(tasks);
+                this.countSharedTaskSignal.set(tasks.length);
                 this.loadingSharedSignal.set(false);
             });
         } else {

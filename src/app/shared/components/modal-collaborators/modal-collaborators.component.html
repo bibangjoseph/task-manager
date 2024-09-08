@@ -6,18 +6,25 @@
            placeholder="Rechercher des utilisateurs"
            type="text">
 
-    <div class="form-check">
-        <input [(ngModel)]="editPermission" class="form-check-input" id="canEdit" type="checkbox">
-        <label class="form-check-label" for="canEdit">
-            Peut éditer
-        </label>
+    <div class="row mt-4">
+        <div class="col-6">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">
+                    <input [(ngModel)]="editPermission" class="form-check-input" type="checkbox">
+                </span>
+                <input class="form-control" disabled type="text" value="Peut éditer">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                    <input [(ngModel)]="deletePermission" class="form-check-input" type="checkbox">
+                </span>
+                <input class="form-control" disabled type="text" value="Peut supprimer">
+            </div>
+        </div>
     </div>
-    <div class="form-check">
-        <input [(ngModel)]="deletePermission" class="form-check-input" id="canDelete" type="checkbox">
-        <label class="form-check-label" for="canDelete">
-            Peut supprimer
-        </label>
-    </div>
+
     <ul class="list-group mt-3">
         @for (user of filteredUsers; track user.id) {
             <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -30,5 +37,4 @@
 <div class="modal-footer">
     <button (click)="close()" class="btn btn-danger" type="button">Fermer</button>
     <button class="btn btn-primary" type="submit">Sauvegarder</button>
-
 </div>

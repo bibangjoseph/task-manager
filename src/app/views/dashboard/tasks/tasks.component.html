@@ -11,10 +11,16 @@
 
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a (click)="changeTab(1)" [ngClass]="{ 'active': selectedTab === 1 }" class="nav-link">Mes tâches </a>
+            <a (click)="changeTab(1)" [ngClass]="{ 'active': selectedTab === 1 }" class="nav-link">
+                Mes tâches
+                <span class="badge text-bg-primary">{{ countTaskSignal() }}</span>
+            </a>
         </li>
         <li class="nav-item">
-            <a (click)="changeTab(2)" [ngClass]="{ 'active': selectedTab === 2 }" class="nav-link">Tâches Partagées</a>
+            <a (click)="changeTab(2)" [ngClass]="{ 'active': selectedTab === 2 }" class="nav-link">
+                Tâches Partagées
+                <span class="badge text-bg-primary">{{ countSharedTaskSignal() }}</span>
+            </a>
         </li>
     </ul>
     <br>

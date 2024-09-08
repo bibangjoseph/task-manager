@@ -35,8 +35,6 @@ export class AuthService {
         try {
             let userCredential = await signInWithEmailAndPassword(this.auth, email, password);
             const user = userCredential.user;
-            console.log('User logged in:', user);
-
             // Optionnel : récupérer les informations utilisateur depuis Firestore
             const userDocRef = doc(this.firestore, `users/${user.uid}`);
             let docSnapshot = await getDoc(userDocRef);
@@ -47,7 +45,6 @@ export class AuthService {
             }
 
         } catch (error) {
-            console.error('Error during login:', error);
             return Promise.reject(error);
         }
     }
@@ -65,6 +62,18 @@ export class AuthService {
         const usersRef = collection(this.firestore, 'users');
         const snapshot = await getDocs(usersRef);
         return snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+    }
+
+
+    async getUser(): Promise<any> {
+        const user = this.auth.currentUser;
+        const userRef = doc(this.firestore, `users/${user?.uid}`);
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+            return docSnap.data();
+        } else {
+            return null;
+        }
     }
 
 }

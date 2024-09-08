@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {NavbarComponent} from "../../../shared/components/navbar/navbar.component";
 import {RouterLink} from "@angular/router";
 import {TaskItemComponent} from "../../../shared/components/task-item/task-item.component";
@@ -7,6 +7,7 @@ import {ModalTaskComponent} from "../../../shared/components/modal-task/modal-ta
 import {MyTasksComponent} from "../../../shared/components/my-tasks/my-tasks.component";
 import {ShareTasksComponent} from "../../../shared/components/share-tasks/share-tasks.component";
 import {NgClass} from "@angular/common";
+import {TaskService} from "../../../core/services/task.service";
 
 @Component({
     selector: 'app-tasks',
@@ -24,7 +25,18 @@ import {NgClass} from "@angular/common";
 })
 export class TasksComponent {
     modal = inject(NgbModal)
+    taskService = inject(TaskService);
     selectedTab = 1;
+    user: any
+
+    countTaskSignal = signal(0);
+    countSharedTaskSignal = signal(0);
+
+    constructor() {
+        this.countTaskSignal = this.taskService.countTaskSingal;
+        this.countSharedTaskSignal = this.taskService.countSharedTaskSignal;
+
+    }
 
     addTask() {
         this.modal.open(ModalTaskComponent, {size: 'lg'});

@@ -3,6 +3,8 @@ import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/route
 import {NgClass} from "@angular/common";
 import {AuthService} from "../../../core/services/auth.service";
 import {ToastService} from "../../../core/services/toast.service";
+import {Firestore} from "@angular/fire/firestore";
+import {getMessaging} from "firebase/messaging";
 
 @Component({
     selector: 'app-navbar',
@@ -15,6 +17,15 @@ export class NavbarComponent {
     router = inject(Router)
     auth = inject(AuthService)
     toast = inject(ToastService)
+    firestore = inject(Firestore);
+    user: any;
+    private messaging = getMessaging();
+
+    constructor() {
+        this.auth.getUser().then((res) => {
+            this.user = res;
+        })
+    }
 
     isLinkActive(urls: string[]): boolean {
         return urls.some(url => this.router.isActive(url, true));
@@ -26,5 +37,4 @@ export class NavbarComponent {
             this.toast.showSuccess('Vous avez été déconnecté avec succès', 'Déconnexion');
         });
     }
-
 }
