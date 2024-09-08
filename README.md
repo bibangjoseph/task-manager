@@ -23,10 +23,12 @@ Pour installer et démarrer le projet, suivez ces étapes :
    ```
 3. Installez les dépendances :
    ```bash
-   npm install
+   npm install -f
    ```
 4. Configurez Firebase en suivant les instructions dans le fichier `environment.ts` :
-  - Ajoutez vos clés d'API Firebase, les informations du projet, etc.
+
+- Ajoutez vos clés d'API Firebase, les informations du projet, etc.
+
 5. Démarrez l'application :
    ```bash
    ng serve
@@ -42,9 +44,8 @@ Pour installer et démarrer le projet, suivez ces étapes :
 - **Modifier une Tâche** : Cliquez sur une tâche existante pour la modifier.
 - **Supprimer une Tâche** : Utilisez l'option de suppression pour retirer une tâche.
 - **Inviter des Collaborateurs** : Invitez d'autres utilisateurs à collaborer sur une liste de tâches. Lors de l'invitation, vous pouvez spécifier les permissions des collaborateurs :
-  - **Modification** : Permet au collaborateur de modifier les tâches existantes.
-  - **Ajout** : Permet au collaborateur d'ajouter de nouvelles tâches à la liste.
-  - **Suppression** : Permet au collaborateur de supprimer des tâches.
+    - **Modification** : Permet au collaborateur de modifier les tâches existantes.
+    - **Ajout** : Permet au collaborateur d'ajouter de nouvelles tâches à la liste.
 
 ## Génération de Fichiers
 
